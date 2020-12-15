@@ -1,17 +1,23 @@
 import './App.css';
-import Contact from './Contact.js';
+import Contacts from './Contacts.js';
 
 function App() {
 
-  const c = {
-    name: "Alexandera",
-    phone: "666777888"
-  }
+  const c = [
+    {
+      name: "Alexander",
+      phone: "666777888"
+    },
+    {
+      name: "Thomas",
+      phone: "888999900"
+    }
+  ]
 
   return (
     <div className="App">
       <h1>Contacts App</h1>
-      <Contact contact={c}/>
+      <Contacts contacts={c}/>
     </div>
   );
 }
