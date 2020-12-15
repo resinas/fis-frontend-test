@@ -1,12 +1,26 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import EditableContact from './EditableContact.js';
 import Alert from './Alert.js';
 import NewContact from './NewContact.js';
+import ContactsApi from './ContactsApi.js';
 
 function Contacts(props) {
 
     const [message, setMessage] = useState(null);
-    const [contacts, setContacts] = useState(props.contacts);
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        async function fetchContacts() {
+            try {
+                const c = await ContactsApi.getAllContacts();
+                setContacts(c);
+            } catch (error) {
+                setMessage('Could not contact with the server');
+            }
+        }
+
+        fetchContacts();
+    }, []);
 
     function onAlertClose() {
         setMessage(null);
